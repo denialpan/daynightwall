@@ -1,0 +1,9 @@
+Package: com.denial.daynightwall
+Name: daynightwall
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: if you have this tweak, congratulations, this tweak doesn't exist on any repository
+Maintainer: denial
+Author: denial
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader, firmware (>= 13.0), com.mrgcgamer.libgcuniversal (>= 1.1.2), ws.hbang.common (>= 1.14)

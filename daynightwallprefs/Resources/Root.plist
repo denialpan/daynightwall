@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>preferences suck</string>
+			<key>footerText</key>
+			<string>ZZZZzzzzzz......</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>defaults</key>
+			<string>com.denial.daynightwallprefs</string>
+			<key>key</key>
+			<string>tweakEnabled</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>images</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>GcImagePickerCell</string>
+			<key>label</key>
+			<string>Morning (8 AM)</string>
+			<key>defaults</key>
+			<string>com.denial.daynightwallprefs</string>
+			<key>key</key>
+			<string>wallpaperMorning</string>
+			<key>usesPhotos</key>
+			<true/>
+			<key>usesVideos</key>
+			<false/>
+			<key>videoQuality</key>
+			<integer>1</integer>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>GcImagePickerCell</string>
+			<key>label</key>
+			<string>Afternoon (12 PM)</string>
+			<key>defaults</key>
+			<string>com.denial.daynightwallprefs</string>
+			<key>key</key>
+			<string>wallpaperAfternoon</string>
+			<key>usesPhotos</key>
+			<true/>
+			<key>usesVideos</key>
+			<false/>
+			<key>videoQuality</key>
+			<integer>1</integer>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>GcImagePickerCell</string>
+			<key>label</key>
+			<string>Sunset (6 PM)</string>
+			<key>defaults</key>
+			<string>com.denial.daynightwallprefs</string>
+			<key>key</key>
+			<string>wallpaperSunset</string>
+			<key>usesPhotos</key>
+			<true/>
+			<key>usesVideos</key>
+			<false/>
+			<key>videoQuality</key>
+			<integer>1</integer>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>GcImagePickerCell</string>
+			<key>label</key>
+			<string>Midnight (10 PM)</string>
+			<key>defaults</key>
+			<string>com.denial.daynightwallprefs</string>
+			<key>key</key>
+			<string>wallpaperMidnight</string>
+			<key>usesPhotos</key>
+			<true/>
+			<key>usesVideos</key>
+			<false/>
+			<key>videoQuality</key>
+			<integer>1</integer>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Respring to save changes</string>
+		</dict>	
+		
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Respring</string>
+			<key>action</key>
+			<string>respringUtil</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Reset Everything</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Reset Preferences</string>
+			<key>action</key>
+			<string>resetPreferences</string>
+		</dict> 
+
+	</array>
+	<key>title</key>
+	<string>DayNightWall</string>
+</dict>
+</plist>
