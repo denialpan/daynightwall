@@ -11,3 +11,7 @@ UIImage *wallpaperMorning;
 UIImage *wallpaperAfternoon;
 UIImage *wallpaperSunset;
 UIImage *wallpaperMidnight;
+
+NSDate *currentTime;
+NSDateFormatter *formatTime;
+NSString *dateString;
