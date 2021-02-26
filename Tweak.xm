@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 #import "daynightwall.h"
-#import <AudioToolbox/AudioServices.h>
 #import "GcUniversal/GcImagePickerUtils.h"
 
 @interface CSCoverSheetViewController : UIViewController 
