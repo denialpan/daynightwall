@@ -65,22 +65,21 @@ static void loadPrefsInAFancyWay() {
 
 	%new 
 
-		//maybe this is better if it were to be switch cases
+		//maybe this is better if it were to be switch cases? No.
 		- (void)updateWallpaper {
 
-			currentTime = [NSDate date];
-			dateString = [formatTime stringFromDate:currentTime];
+			int hours = [NSCalendar.currentCalendar component:NSCalendarUnitHour fromDate:[NSDate date]];
 
-			if ([dateString intValue] >= 22) { //10 pm
+			if (hours >= 22) { //10 pm
 				wallpaperMidnight = [GcImagePickerUtils imageFromDefaults:@"com.denial.daynightwallprefs" withKey:@"wallpaperMidnight"];
 				[wallpaperImageViewLS setImage:wallpaperMidnight];
-			} else if ([dateString intValue] >= 18) { //6 pm
+			} else if (hours >= 18) { //6 pm
 				wallpaperSunset = [GcImagePickerUtils imageFromDefaults:@"com.denial.daynightwallprefs" withKey:@"wallpaperSunset"];
 				[wallpaperImageViewLS setImage:wallpaperSunset];
-			} else if ([dateString intValue] >= 12) { //12 pm
+			} else if (hours >= 12) { //12 pm
 				wallpaperAfternoon = [GcImagePickerUtils imageFromDefaults:@"com.denial.daynightwallprefs" withKey:@"wallpaperAfternoon"];
 				[wallpaperImageViewLS setImage:wallpaperAfternoon];
-			} else if ([dateString intValue] >= 8) { //8 am
+			} else if (hours >= 8) { //8 am
 				wallpaperMorning = [GcImagePickerUtils imageFromDefaults:@"com.denial.daynightwallprefs" withKey:@"wallpaperMorning"];
 				[wallpaperImageViewLS setImage:wallpaperMorning];
 			} else { //time before 8 am, so loop back to midnight wallpaper
