@@ -43,9 +43,9 @@ static void loadPrefsInAFancyWay() {
 				wallpaperImageViewLS = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
 			
 				[wallpaperImageViewLS setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-        		[wallpaperImageViewLS setContentMode:UIViewContentModeScaleAspectFill];
-        		[wallpaperImageViewLS setClipsToBounds:YES];
-        		wallpaperImageViewLS.tag = 120;
+				[wallpaperImageViewLS setContentMode:UIViewContentModeScaleAspectFill];
+				[wallpaperImageViewLS setClipsToBounds:YES];
+				wallpaperImageViewLS.tag = 120;
 				[[self view] insertSubview:wallpaperImageViewLS atIndex:0];
 
 			}
@@ -65,7 +65,9 @@ static void loadPrefsInAFancyWay() {
 
 	%new 
 
-		//maybe this is better if it were to be switch cases? No.
+		//maybe this is better if it were to be switch cases?
+		// sadly this can't be done with a switch, because in the goddamn objC, cases can only take
+		// const integers as values, and here we are working with images :c
 		- (void)updateWallpaper {
 
 			int hours = [NSCalendar.currentCalendar component:NSCalendarUnitHour fromDate:[NSDate date]];
