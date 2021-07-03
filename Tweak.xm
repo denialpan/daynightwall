@@ -1,6 +1,5 @@
 #import "daynightwall.h"
-//#import "GcUniversal/GcImagePickerUtils.h"
-#import "GcImagePickerUtils.h"
+#import "GcUniversal/GcImagePickerUtils.h"
 
 @interface CSCoverSheetViewController : UIViewController 
 	- (void)updateWallpaper;
