@@ -1,33 +1,67 @@
-#import <UIKit/UIKit.h>
 #import "daynightwall.h"
-#import "GcUniversal/GcImagePickerUtils.h"
+//#import "GcUniversal/GcImagePickerUtils.h"
+#import "GcImagePickerUtils.h"
 
 @interface CSCoverSheetViewController : UIViewController 
 	- (void)updateWallpaper;
+	- (void)createWallpaper;
 @end
 
-%group daynightwall
+
+
+static void loadPrefsInAFancyWay() {
+
+	// convert an unmutable dictionary into a mutable one. I don't have a single clue
+	// as to why, but it works lmao
+
+	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+	NSMutableDictionary *prefs = dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
+
+
+	tweakEnabled = prefs[@"tweakEnabled"] ? [prefs[@"tweakEnabled"] boolValue] : NO;
+
+}
 	
 	%hook CSCoverSheetViewController
-	
-		- (void) viewDidLoad {
 
-			wallpaperImageViewLS = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
+
+	%new
+
+
+		- (void)createWallpaper {
+
+
+			loadPrefsInAFancyWay();
+
+			// give it a tag and remove from superview, otherwise, the tweak enables on the fly, but doesn't disable
+			// because the image it's still there
+
+			[[self.view viewWithTag:120] removeFromSuperview];
+
+			if(tweakEnabled) {
+
+				wallpaperImageViewLS = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
 			
-			[wallpaperImageViewLS setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-        	[wallpaperImageViewLS setContentMode:UIViewContentModeScaleAspectFill];
-        	[wallpaperImageViewLS setClipsToBounds:YES];
-			[[self view] insertSubview:wallpaperImageViewLS atIndex:0];
+				[wallpaperImageViewLS setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+        		[wallpaperImageViewLS setContentMode:UIViewContentModeScaleAspectFill];
+        		[wallpaperImageViewLS setClipsToBounds:YES];
+        		wallpaperImageViewLS.tag = 120;
+				[[self view] insertSubview:wallpaperImageViewLS atIndex:0];
 
-			%orig;
+			}
 
 		}
+
 
 		- (void)viewWillAppear:(BOOL)animated {
 
+			%orig;
+
+			[self createWallpaper];
 			[self updateWallpaper];
 
 		}
+
 
 	%new 
 
@@ -56,21 +90,11 @@
 
 		}
 
-	%end	
 
 %end
 
 %ctor {
 
-	preferences = [[HBPreferences alloc] initWithIdentifier:@"com.denial.daynightwallprefs"];
-
-	[preferences registerBool:&tweakEnabled default:NO forKey:@"tweakEnabled"];
-
-	formatTime = [[NSDateFormatter alloc] init];
-	[formatTime setDateFormat:@"HH"];
-
-	if (tweakEnabled) {
-		%init(daynightwall)
-	}
+	loadPrefsInAFancyWay();
 
 }

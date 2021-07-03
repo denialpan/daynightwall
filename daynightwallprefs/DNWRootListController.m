@@ -1,13 +1,9 @@
 #include "DNWRootListController.h"
 #import <Preferences/PSListController.h>
 #import <Preferences/PSSpecifier.h>
-#import <CepheiPrefs/HBRootListController.h>
-#import <CepheiPrefs/HBAppearanceSettings.h>
-#import <Cephei/HBPreferences.h>
-#import <Cephei/HBRespringController.h>
-#import <spawn.h>
 
-HBPreferences *prefs;
+static NSString *plistPath = @"/var/mobile/Library/Preferences/com.denial.daynightwallprefs.plist";
+
 
 @implementation DNWRootListController
 
@@ -19,23 +15,23 @@ HBPreferences *prefs;
 	return _specifiers;
 }
 
-- (void)resetPreferences {
 
-	prefs = [[HBPreferences alloc] initWithIdentifier: @"com.denial.daynightwallprefs"];
-    [prefs removeAllObjects];
+- (id)readPreferenceValue:(PSSpecifier*)specifier {
 
-    [[NSFileManager defaultManager] removeItemAtPath:@"/var/mobile/Library/Preferences/com.denial.daynightwallprefs/" error:nil];
-	[self respringUtil];
-	
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
+    return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
+
 }
 
-- (void)respringUtil {	
 
-	pid_t pid;
-    const char* args[] = {"killall", "backboardd", NULL};
-    [HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=DayNightWall"]];
-    posix_spawn(&pid, "/usr/bin/killall", NULL, NULL, (char *const *)args, NULL);
-	
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
+    
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
+    [settings setObject:value forKey:specifier.properties[@"key"]];
+    [settings writeToFile:plistPath atomically:YES];
+
 }
 
 @end
